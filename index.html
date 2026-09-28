@@ -1,0 +1,584 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#FBF3E1">
+<title>你与TA之间｜创作者与OC的灵魂链接测试</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600;700;800&family=Noto+Serif+SC:wght@500;700;900&family=Noto+Sans+SC:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{
+  --teal:#9D1C0A;
+  --teal-deep:#9D1C0A;
+  --pink:#6E7986;
+  --pink-deep:#57616C;
+  --peach:#F2EFE0;
+  --peach-deep:#F9D991;
+  --blue:#C9DDF5;
+  --white:#FFFFFF;
+  --ink:#3A2318;
+  --muted:#A8907A;
+  --bg:#FBF8EE;
+  --paper:#FFFEFA;
+  --line:#EFE2C8;
+  --shadow:0 18px 46px rgba(122,50,30,.14);
+  --r-lg:28px;
+  --r-md:20px;
+  --r-sm:14px;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  margin:0;
+  min-height:100vh;
+  background:var(--bg);
+  color:var(--ink);
+  font-family:'Noto Sans SC',-apple-system,BlinkMacSystemFont,"PingFang SC","Microsoft YaHei",sans-serif;
+  line-height:1.65;
+  -webkit-tap-highlight-color:transparent;
+}
+h1,h2,h3{font-family:'Noto Serif SC','Noto Sans SC',sans-serif}
+button{font:inherit}
+.wrap{width:min(480px,100%);margin:0 auto;padding:20px 16px 40px}
+.hidden{display:none!important}
+
+.eyebrow{font-size:11px;letter-spacing:.24em;text-transform:uppercase;color:var(--teal-deep);font-weight:700}
+.card{background:var(--paper);border:1px solid var(--line);border-radius:var(--r-lg);padding:22px;box-shadow:var(--shadow)}
+
+.btn{border:none;border-radius:999px;padding:15px 20px;font-weight:700;font-size:15px;cursor:pointer;width:100%;transition:.15s;letter-spacing:.01em}
+.btn-primary{background:var(--teal-deep);color:#fff}
+.btn-primary:active{transform:scale(.98)}
+.btn-primary:disabled{opacity:.32;cursor:not-allowed}
+.btn-ghost{background:var(--white);color:var(--ink);border:1.5px solid var(--line)}
+.btn-ghost:active{transform:scale(.98)}
+.btn-row{display:flex;gap:10px;margin-top:14px}
+.btn-row .btn{flex:1}
+
+.cover-top{padding:32px 2px 6px;text-align:center}
+.cover-top h1{font-size:clamp(30px,9.5vw,40px);font-weight:900;letter-spacing:.02em;margin:0;line-height:1.3}
+.cover-top .subtitle{font-size:14px;color:var(--teal-deep);font-weight:700;margin:10px 0 0}
+.cover-desc{color:#6B5642;font-size:13px;margin:14px auto 0;max-width:320px;text-align:center}
+
+.name-card{margin-top:26px;background:var(--teal);border-radius:var(--r-lg);padding:20px;box-shadow:var(--shadow)}
+.name-card .eyebrow{color:#FBE3D8}
+.name-card h3{color:#fff;font-size:16px;margin:6px 0 14px;font-weight:700;font-family:'Noto Sans SC',sans-serif}
+.field{margin-bottom:12px}
+.field label{display:block;font-size:11.5px;color:#FBE3D8;margin-bottom:6px;letter-spacing:.04em}
+.field input{width:100%;border:none;border-radius:14px;padding:13px 14px;font-size:15px;font-weight:600;background:rgba(255,255,255,.94);color:var(--ink)}
+.field input::placeholder{color:#ab9d7f;font-weight:500}
+.name-card .btn{margin-top:6px;background:var(--blue);color:var(--teal-deep)}
+
+.progressBox{position:sticky;top:0;z-index:20;background:rgba(251,248,238,.92);backdrop-filter:blur(12px);padding:12px 0 10px;margin:0 -16px;padding-left:16px;padding-right:16px}
+.progressTop{display:flex;justify-content:space-between;align-items:center;font-size:11.5px;color:var(--muted);margin-bottom:7px}
+.bar{height:5px;background:var(--line);border-radius:99px;overflow:hidden}
+.bar i{display:block;height:100%;width:0;border-radius:99px;transition:.35s;background:var(--teal)}
+
+.qcard{margin-top:14px;background:var(--paper);border:1px solid var(--line);border-radius:var(--r-lg);padding:22px;box-shadow:var(--shadow)}
+.qnum{font-size:11px;color:#b3a17e;margin-bottom:10px}
+.question{font-size:18px;line-height:1.55;font-weight:700;letter-spacing:-.01em;margin:2px 0 18px}
+.option{width:100%;text-align:left;border:1.5px solid var(--line);background:#FFFEFA;border-radius:16px;padding:13px 14px;margin:8px 0;cursor:pointer;display:flex;align-items:flex-start;gap:11px;color:var(--ink);transition:.15s}
+.option:active{transform:scale(.99)}
+.option .idx{flex:none;width:24px;height:24px;border-radius:50%;background:var(--line);display:grid;place-items:center;font-size:11px;font-weight:700;color:var(--muted)}
+.option.selected{background:#F7ECD8;border-color:var(--teal)}
+.option.selected .idx{background:var(--teal);color:#fff}
+
+.res-hero{margin-top:6px;text-align:center;padding:8px 4px 4px}
+.res-hero .eyebrow{color:var(--pink-deep);font-size:12px}
+.res-hero h2{font-size:clamp(28px,9vw,36px);font-weight:900;letter-spacing:.03em;margin:10px 0 4px;color:var(--teal-deep)}
+.res-hero .pair{font-size:12px;color:var(--muted);margin:0 0 6px}
+.res-hero .tagline{font-size:13.5px;color:#6B5642;margin:0 auto;max-width:300px;line-height:1.7}
+.kw-row{display:flex;flex-wrap:wrap;gap:7px;justify-content:center;margin-top:12px}
+.kw-row span{background:var(--peach);color:var(--pink-deep);font-size:11.5px;font-weight:700;padding:5px 12px;border-radius:999px}
+
+.sectionTitle{font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:var(--teal-deep);font-weight:800;margin:26px 2px 10px}
+
+.info-card{background:var(--paper);border:1px solid var(--line);border-radius:var(--r-md);padding:17px 18px;margin-bottom:10px}
+.info-card p{margin:0;font-size:13.5px;color:#4A3524;line-height:1.8}
+
+.dim-block{background:var(--paper);border:1px solid var(--line);border-radius:var(--r-md);padding:15px 16px;margin-bottom:10px}
+.dim-head{display:flex;justify-content:space-between;font-size:11px;color:var(--muted);margin-bottom:8px}
+.dim-name{font-size:13.5px;font-weight:700;color:var(--ink);margin-bottom:8px}
+.meter{height:8px;background:var(--line);border-radius:99px;overflow:hidden;margin-bottom:4px}
+.meter i{display:block;height:100%;border-radius:99px;background:var(--teal)}
+.dim-block.mode .meter i{background:var(--pink)}
+.dim-pct{text-align:right;font-size:11px;color:var(--muted);font-weight:700}
+.dim-note{font-size:11.5px;color:#8a7660;margin-top:6px;line-height:1.6}
+
+.role-card{background:var(--peach);border-radius:var(--r-md);padding:16px 18px;margin-bottom:10px;text-align:center}
+.role-card .role-name{font-size:17px;font-weight:800;color:var(--teal-deep);margin-bottom:4px}
+.role-card p{margin:0;font-size:12.5px;color:#6B5642}
+
+.direction-card{background:var(--paper);border:1px solid var(--line);border-radius:var(--r-md);padding:16px 18px;margin-bottom:10px}
+.direction-row{display:flex;gap:8px;margin:6px 0;font-size:13px}
+.direction-row b{flex:none;width:70px;color:var(--teal-deep);font-weight:700}
+.direction-row span{color:#4A3524}
+
+.prompt-list{list-style:none;margin:0;padding:0}
+.prompt-list li{display:flex;gap:10px;background:var(--paper);border:1px solid var(--line);border-radius:var(--r-md);padding:14px 15px;margin-bottom:9px;font-size:13px;color:#4A3524}
+.prompt-list li .n{flex:none;width:20px;height:20px;border-radius:50%;background:var(--teal);color:#fff;font-size:10.5px;font-weight:800;display:grid;place-items:center;margin-top:1px}
+
+.quote-card{background:var(--teal-deep);border-radius:var(--r-md);padding:18px 20px;margin-bottom:10px;text-align:center}
+.quote-card p{margin:0;color:#fff;font-size:14px;font-style:italic;line-height:1.7;font-family:'Noto Serif SC',serif}
+
+.reminder-card{background:var(--peach);border-radius:var(--r-md);padding:15px 18px;margin-bottom:10px}
+.reminder-card p{margin:0;font-size:12.5px;color:#6B5642;line-height:1.7}
+
+.egg-card{margin-top:8px;background:var(--peach);border:2px solid var(--teal-deep);border-radius:32px;padding:24px 20px;position:relative;overflow:hidden}
+.egg-card::before{content:'';position:absolute;top:-30px;right:-30px;width:80px;height:80px;background:var(--teal);border-radius:50%;opacity:.15}
+.egg-card::after{content:'';position:absolute;bottom:-24px;left:-24px;width:60px;height:60px;background:var(--blue);border-radius:50%;opacity:.5}
+.egg-small{font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--pink-deep);font-weight:700;text-align:center;position:relative}
+.egg-title{font-size:20px;font-weight:900;color:var(--teal-deep);text-align:center;margin:8px 0 10px;font-family:'Noto Serif SC',serif;position:relative}
+.egg-prompt{font-size:12px;color:#8a7660;font-style:italic;text-align:center;margin:0 0 16px;line-height:1.7;position:relative}
+.egg-core{background:#fff;border-radius:18px;padding:16px 18px;text-align:center;position:relative;box-shadow:var(--shadow)}
+.egg-core p{margin:0;font-size:15px;font-weight:700;color:var(--teal-deep);line-height:1.7;font-family:'Noto Serif SC',serif}
+.egg-kw{display:flex;flex-wrap:wrap;gap:6px;justify-content:center;margin:14px 0;position:relative}
+.egg-kw span{background:#fff;color:var(--pink-deep);font-size:11px;font-weight:700;padding:4px 11px;border-radius:999px}
+.egg-reveal-btn{width:100%;background:none;border:1.5px dashed var(--teal-deep);color:var(--teal-deep);border-radius:999px;padding:11px;font-size:12.5px;font-weight:700;cursor:pointer;position:relative}
+.egg-hidden{margin-top:12px;font-size:12.5px;color:#6B5642;line-height:1.85;padding:14px 16px;background:#fff;border-radius:16px;position:relative}
+
+.result-actions{display:flex;gap:10px;margin-top:20px}
+.result-actions .btn{flex:1}
+.copy-hint{text-align:center;font-size:11px;color:var(--muted);margin-top:8px}
+
+.disclaimer{font-size:10.5px;color:#a8927a;text-align:center;margin-top:18px;padding:0 8px;line-height:1.8;white-space:pre-line}
+
+.site-credit{width:min(480px,100%);margin:26px auto 4px;padding:14px 0 4px;text-align:center;color:var(--muted);font-size:12px;letter-spacing:.16em;font-weight:700}
+.site-credit span{display:inline-block;padding:7px 15px;border:1px solid var(--line);border-radius:999px;background:var(--paper)}
+
+@media(max-width:380px){
+  .card,.qcard{padding:18px}
+  .question{font-size:16.5px}
+}
+</style>
+</head>
+<body>
+<div class="wrap" id="app">
+
+  <!-- ============ COVER ============ -->
+  <section id="screen-cover">
+    <div class="cover-top">
+      <h1>你与TA之间</h1>
+      <p class="subtitle">创作者与OC的灵魂链接测试</p>
+      <p class="cover-desc">从创作习惯、情感联结、角色边界与长期创作方式，看看你和TA究竟建立了怎样的关系。</p>
+    </div>
+
+    <div class="name-card">
+      <div class="eyebrow">开始之前</div>
+      <h3>先告诉我彼此的名字</h3>
+      <div class="field"><label>你的昵称</label><input id="nameSelf" type="text" placeholder="例如：阿念"></div>
+      <div class="field"><label>OC昵称</label><input id="nameA" type="text" placeholder="例如：沈知遥"></div>
+      <button class="btn" id="startBtn">开始测试</button>
+    </div>
+  </section>
+
+  <!-- ============ QUIZ ============ -->
+  <section id="screen-quiz" class="hidden">
+    <div class="progressBox">
+      <div class="progressTop">
+        <span id="whoName"></span>
+        <span id="counter"></span>
+      </div>
+      <div class="bar"><i id="bar"></i></div>
+    </div>
+    <div class="qcard">
+      <div class="qnum" id="qnum"></div>
+      <div class="question" id="question"></div>
+      <div id="options"></div>
+    </div>
+    <div class="btn-row">
+      <button class="btn btn-ghost" id="prevBtn">上一题</button>
+      <button class="btn btn-primary" id="nextBtn" disabled>下一题</button>
+    </div>
+  </section>
+
+  <!-- ============ RESULT ============ -->
+  <section id="screen-result" class="hidden">
+    <div id="resultBody"></div>
+
+    <div class="result-actions">
+      <button class="btn btn-ghost" id="restartBtn">重新测试</button>
+      <button class="btn btn-primary" id="copyBtn">复制结果</button>
+    </div>
+    <div class="copy-hint" id="copyHint"></div>
+
+    <p class="disclaimer" id="disclaimerText"></p>
+  </section>
+
+</div>
+
+<footer class="site-credit"><span>@收藏夹里的熊</span></footer>
+
+<script>
+/* ============================================================
+   《你与TA之间》—— 造物者与OC的灵魂链接测试
+   9种结果 D1-D9；每题4个选项，A/B/C/D显示顺序随机，计分归属跟随选项文字不跟随显示位置。
+   主计分：简单计数（每题选中的选项给对应类型+1），叠加蒙特卡洛校准偏移后取最高分，确保9型概率尽量均等。
+   关系纬度(5)与创作模式(5)：各题选项附带的二级分数动态累加，归一化为百分比横条。
+   ============================================================ */
+const QUESTIONS=[{"q":"OC最初诞生的时候，你更接近下面哪种状态？","o":[{"t":"我脑子里已经有一个很明确的形象，想把TA完整地塑造出来。","type":"D1","d":{"zhudao":2,"xinren":1}},{"t":"我只是突然产生了一种很强烈的感觉，想把它变成一个角色。","type":"D8","d":{"qglj":2,"qgjl":-1}},{"t":"我想创造一个能够陪我走进某种故事或世界的角色。","type":"D2","d":{"yilai":2,"qgjl":1}},{"t":"我没有特别明确的目的，只是觉得这个角色突然应该出现。","type":"D9","d":{"jsz":2,"jqsy":2}}]},{"q":"写剧情时，TA突然做出了你没有预料到的选择，你通常会？","o":[{"t":"先停下来想：TA为什么会这样做？","type":"D7","d":{"jsz":2,"sjgc":1}},{"t":"如果这个选择更符合TA现在的状态，我会顺着写下去。","type":"D5","d":{"jsz":2,"xinren":2}},{"t":"把TA拉回原本的剧情轨道。","type":"D1","d":{"zhudao":2,"sdgk":2}},{"t":"觉得这个意外很有意思，直接看看它会把故事带到哪里。","type":"D9","d":{"chongtu":2,"jqsy":2}}]},{"q":"如果有人提出一个与你完全不同的TA解读，你第一反应更接近？","o":[{"t":"我会解释我为什么这样设计TA。","type":"D1","d":{"zhudao":2,"sdgk":2}},{"t":"我反而会好奇：原来别人看到的是这样的TA。","type":"D6","d":{"sjgc":2,"qgjl":1}},{"t":"如果对方说中了某些我没意识到的东西，会让我重新认识TA。","type":"D7","d":{"jsz":2,"xinren":1}},{"t":"只要不违背我心里的核心设定，怎么理解都可以。","type":"D5","d":{"jsz":1,"xinren":2}}]},{"q":"现实中情绪很复杂的时候，你最容易怎么处理TA？","o":[{"t":"把这种情绪写进TA的故事里。","type":"D8","d":{"qglj":2,"yilai":1}},{"t":"想象TA会怎么回应我。","type":"D2","d":{"qglj":2,"qgjl":-2}},{"t":"观察TA在这种情况下会做出什么选择。","type":"D7","d":{"jsz":2,"sjgc":1}},{"t":"不太会把现实情绪带进创作。","type":"D6","d":{"qgjl":2,"sjgc":2}}]},{"q":"你重新翻看早期OC设定时，最容易出现的念头是？","o":[{"t":"“当时的我怎么会这样写，好像还挺可爱的。”","type":"D5","d":{"qgjl":1,"jsz":1}},{"t":"“这里可以重新设计，让TA变得更完整。”","type":"D1","d":{"sdgk":2,"zhudao":2}},{"t":"“虽然现在的TA已经变了，但我还是舍不得最初的样子。”","type":"D4","d":{"yilai":2,"qglj":1}},{"t":"“我已经很好奇TA接下来还能变成什么样。”","type":"D9","d":{"jsz":2,"jqsy":2}}]},{"q":"如果必须用一个词形容你和TA平时的关系，你会选？","o":[{"t":"陪伴","type":"D2","d":{"yilai":2,"qglj":2}},{"t":"观察","type":"D6","d":{"qgjl":2,"sjgc":2}},{"t":"塑造","type":"D1","d":{"zhudao":2,"sdgk":2}},{"t":"拉扯","type":"D9","d":{"chongtu":2,"jqsy":2}}]},{"q":"当TA经历很痛苦的剧情时，你更可能？","o":[{"t":"心疼到想修改剧情，不希望TA真的经历这些。","type":"D4","d":{"yilai":2,"qglj":2}},{"t":"即使心疼，也会尊重这个剧情需要。","type":"D5","d":{"xinren":2,"jsz":2}},{"t":"会把这段经历写得很深，因为它可能承载了某些我想表达的东西。","type":"D8","d":{"qglj":2,"qgjl":-1}},{"t":"会很认真观察这件事会怎样改变TA。","type":"D7","d":{"jsz":2,"sjgc":2}}]},{"q":"你最喜欢给TA补充哪一类内容？","o":[{"t":"细节设定：习惯、喜好、衣服、房间、生活用品。","type":"D1","d":{"sdgk":2,"zhudao":1}},{"t":"内心活动：TA真正害怕什么、想要什么。","type":"D3","d":{"qglj":2,"qgjl":-1}},{"t":"与其他角色之间的关系变化。","type":"D4","d":{"xinren":1,"yilai":1}},{"t":"那些原本没有计划、后来突然长出来的故事。","type":"D9","d":{"jsz":2,"jqsy":2}}]},{"q":"如果有人说“这个OC其实很像你”，你更可能？","o":[{"t":"笑着承认：“可能确实有一点。”","type":"D3","d":{"qglj":2}},{"t":"觉得不完全是，TA已经是TA自己了。","type":"D5","d":{"jsz":2,"qgjl":1}},{"t":"表面否认，之后却会偷偷想很久。","type":"D8","d":{"qglj":2}},{"t":"觉得这种解读挺有意思，想看看对方具体看出了什么。","type":"D6","d":{"sjgc":2,"jsz":1}}]},{"q":"如果让TA自己选择未来的人生，你会？","o":[{"t":"希望TA最终过得比我想象中还要好。","type":"D4","d":{"yilai":2,"qglj":1}},{"t":"想知道TA真正会选择什么。","type":"D7","d":{"jsz":2,"xinren":2}},{"t":"还是会替TA保留一条自己认为最合适的道路。","type":"D1","d":{"zhudao":2,"sdgk":2}},{"t":"会有点舍不得，但也愿意看看TA自己走出去之后会变成什么。","type":"D5","d":{"jsz":2,"qglj":1}}]},{"q":"别人画了你的OC，你最在意的是？","o":[{"t":"TA有没有被画出原本的气质。","type":"D1","d":{"sdgk":2,"zhudao":1}},{"t":"对方有没有捕捉到TA某个我自己都没注意到的部分。","type":"D7","d":{"jsz":2,"sjgc":1}},{"t":"TA看起来有没有被好好对待。","type":"D4","d":{"qglj":2,"yilai":1}},{"t":"我会很好奇不同画风里的TA会是什么样子。","type":"D6","d":{"sjgc":2,"jqsy":1}}]},{"q":"如果很久没有创作TA，你最可能出现的感觉是？","o":[{"t":"有一点像少了一个固定陪伴自己的东西。","type":"D2","d":{"yilai":2,"qglj":2}},{"t":"没什么特别感觉，想起来再继续。","type":"D6","d":{"qgjl":2}},{"t":"偶尔会突然很想回去看看TA现在是什么状态。","type":"D7","d":{"jsz":1,"qglj":1}},{"t":"会觉得很多没处理完的东西一直留在那里。","type":"D8","d":{"qglj":2,"jqsy":1}}]},{"q":"如果要给TA设计一个“秘密”，你会更想设计？","o":[{"t":"一个TA自己都不愿面对的过去。","type":"D8","d":{"qglj":2,"chongtu":1}},{"t":"一个只有我知道、其他角色都不知道的细节。","type":"D2","d":{"yilai":2,"xinren":2}},{"t":"一个连我自己都不知道最后会揭开什么的秘密。","type":"D9","d":{"jsz":2,"jqsy":2}},{"t":"一个与TA核心性格形成强烈反差的秘密。","type":"D3","d":{"jqsy":2,"sjgc":1}}]},{"q":"如果TA在现实中真的站到你面前，你最想先做什么？","o":[{"t":"认真看看TA现在到底变成了什么样。","type":"D6","d":{"sjgc":2,"qgjl":1}},{"t":"问TA这些年过得好不好。","type":"D4","d":{"qglj":2,"yilai":1}},{"t":"问TA：“你为什么会做出那些我没有写过的选择？”","type":"D7","d":{"jsz":2,"xinren":1}},{"t":"先确认TA是不是和我想象中的样子一样。","type":"D1","d":{"sdgk":2,"zhudao":1}}]},{"q":"你在设计TA的房间时，更可能？","o":[{"t":"把空间布置成最符合TA性格和世界观的样子。","type":"D1","d":{"sdgk":2,"zhudao":2}},{"t":"放很多只有你们之间才懂的东西。","type":"D2","d":{"yilai":2,"xinren":2}},{"t":"让房间自己讲故事，留下大量生活痕迹。","type":"D4","d":{"sjgc":2,"qglj":1}},{"t":"不太规定具体样子，让TA自然长出来。","type":"D7","d":{"jsz":2,"jqsy":1}}]},{"q":"当你给TA画新衣服或设计新造型时，你最看重？","o":[{"t":"是否符合TA一直以来的设定。","type":"D1","d":{"sdgk":2}},{"t":"能不能表现我现在对TA新的理解。","type":"D3","d":{"qglj":1}},{"t":"有没有一种“TA真的会自己挑这件衣服”的感觉。","type":"D5","d":{"jsz":2,"xinren":1}},{"t":"能不能制造和过去完全不同的新鲜感。","type":"D9","d":{"jqsy":2,"jsz":1}}]},{"q":"如果TA必须离开你熟悉的故事线，进入一个完全陌生的世界，你会？","o":[{"t":"很想知道TA在新世界会变成什么样。","type":"D9","d":{"jsz":2,"jqsy":2}},{"t":"会担心TA是否能够适应。","type":"D4","d":{"yilai":2,"qglj":1}},{"t":"会想先把TA的核心设定保护好。","type":"D1","d":{"sdgk":2,"zhudao":2}},{"t":"觉得这正好是一次重新认识TA的机会。","type":"D6","d":{"sjgc":2,"jsz":1}}]},{"q":"你的OC最容易成为你创作中的哪一种存在？","o":[{"t":"我反复打磨的一件作品。","type":"D1","d":{"sdgk":2,"zhudao":2}},{"t":"我情绪和想法的一个出口。","type":"D8","d":{"qglj":2}},{"t":"一个会不断给我新剧情的人。","type":"D7","d":{"jsz":2,"jqsy":2}},{"t":"一个我想一直看着TA成长的人。","type":"D4","d":{"yilai":2,"qglj":1}}]},{"q":"如果你发现TA越来越不像最初的设定，你会？","o":[{"t":"接受这种变化，并重新整理现在的TA。","type":"D5","d":{"jsz":2,"xinren":1}},{"t":"有点舍不得，会努力保留最初的部分。","type":"D2","d":{"yilai":2,"qglj":1}},{"t":"很兴奋，因为这意味着TA真的长出了新的东西。","type":"D7","d":{"jsz":2,"jqsy":2}},{"t":"如果变化破坏了核心设定，我会把它改回来。","type":"D1","d":{"zhudao":2,"sdgk":2}}]},{"q":"如果某一天你决定暂时停止这个OC的创作，你更可能？","o":[{"t":"把资料完整保存好，等以后重新回来。","type":"D1","d":{"sdgk":2,"zhudao":1}},{"t":"有一种暂时和某个老朋友告别的感觉。","type":"D2","d":{"yilai":2,"qglj":2}},{"t":"觉得故事暂时停在这里也没关系。","type":"D6","d":{"qgjl":2}},{"t":"会忍不住想：TA之后会不会还在我的脑子里继续生活？","type":"D7","d":{"jsz":2,"qglj":1}}]},{"q":"你最容易被哪一种OC灵感击中？","o":[{"t":"一个突然出现、完全没预料到的人物选择。","type":"D9","d":{"jqsy":2,"jsz":2}},{"t":"一段和自己某种情绪高度重合的经历。","type":"D8","d":{"qglj":2}},{"t":"一个角色关系慢慢发生变化的瞬间。","type":"D4","d":{"xinren":1,"yilai":1}},{"t":"一个可以不断扩展的世界观或设定。","type":"D6","d":{"sjgc":2,"sdgk":1}}]},{"q":"如果让你和TA共同完成一个作品，你觉得最有趣的是？","o":[{"t":"看TA最终会不会超出我的计划。","type":"D9","d":{"jsz":2,"jqsy":2}},{"t":"把我们共同经历过的情绪藏进作品里。","type":"D2","d":{"qglj":2,"yilai":1}},{"t":"一起把一个完整的世界搭建起来。","type":"D3","d":{"sdgk":2,"sjgc":1}},{"t":"让TA拥有足够自由，看看TA会把故事带到哪里。","type":"D5","d":{"jsz":2,"xinren":2}}]},{"q":"多年以后重新看到TA，你最希望发现的是？","o":[{"t":"TA仍然保留着最初让我喜欢的核心。","type":"D1","d":{"sdgk":2,"yilai":1}},{"t":"TA已经变成一个我当年完全想不到的人。","type":"D9","d":{"jsz":2,"jqsy":2}},{"t":"TA身上还保存着当年的我。","type":"D3","d":{"qglj":1}},{"t":"我们之间依然有一种很难解释的熟悉感。","type":"D2","d":{"yilai":2,"qglj":2}}]},{"q":"如果要给你和TA的关系留下一句话，你更想选？","o":[{"t":"“我创造了TA，也一直在看着TA长大。”","type":"D4","d":{"yilai":2,"qglj":1}},{"t":"“TA替我说出了很多我没有说出口的话。”","type":"D8","d":{"qglj":2}},{"t":"“我们谁也没有真正拥有谁，只是一起走了很久。”","type":"D5","d":{"xinren":2,"jsz":1}},{"t":"“我本来以为是我在写TA，后来才发现TA也在写我。”","type":"D7","d":{"jsz":2,"jqsy":1}}]}];
+
+const DTYPES=['D1','D2','D3','D4','D5','D6','D7','D8','D9'];
+
+/* ---------------- 占比校准 offset ----------------
+   基于6万次均匀随机作答、1500轮迭代（步长退火+对后段取平均消除震荡）的蒙特卡洛模拟，
+   在原始计数之上叠加这组偏移，使9种结果在随机作答下的占比尽量逼近 1/9（约11.1%）。
+------------------------------------------------- */
+const TYPE_OFFSETS={
+ D1:-1.7771, D2:0.2220, D3:1.2321, D4:0.2130,
+ D5:0.2218, D6:0.2221, D7:-0.7777, D8:0.2306, D9:0.2131
+};
+
+// 5项"关系纬度对比" + 5项"创作模式"，各自[最小值,最大值]用于百分比归一化
+const REL_DIMS=[
+ {key:'yilai', name:'依赖倾向', left:'更独立', right:'更依赖', min:0, max:34, note:'越靠右，代表TA越容易成为日常创作和情绪陪伴的一部分。'},
+ {key:'chongtu', name:'冲突模式', left:'倾向回避', right:'倾向正面碰撞', min:0, max:5, note:'越靠右，代表你更喜欢让矛盾直接进入故事，而不是绕开它。'},
+ {key:'xinren', name:'信任程度', left:'谨慎建立', right:'高度信任', min:0, max:22, note:'越靠右，代表你更愿意相信角色自己的选择和变化。'},
+ {key:'zhudao', name:'主导权', left:'更容易让步', right:'更倾向主导', min:0, max:24, note:'越靠右，代表你更倾向由最初设定决定角色的方向、设定和剧情。'},
+ {key:'qgjl', name:'情绪距离', left:'疏离观察', right:'深度融合', min:-5, max:13, note:'越靠右，代表你与TA之间的情绪连接越紧密。'}
+];
+const MODE_DIMS=[
+ {key:'sdgk', name:'设定掌控', left:'自由生长', right:'精密规划', min:0, max:33, note:'越靠右，越喜欢提前规划人物设定、世界观、时间线与剧情线。'},
+ {key:'qglj', name:'情感联结', left:'客观观察', right:'深度投入', min:0, max:38, note:'越靠右，越容易把现实中的情绪、记忆或个人体验带入角色创作。'},
+ {key:'jsz', name:'角色自主', left:'创作者决定', right:'角色自驱', min:0, max:45, note:'越靠右，越愿意接受角色在创作过程中产生超出原设的选择。'},
+ {key:'sjgc', name:'世界观', left:'角色中心', right:'世界中心', min:0, max:23, note:'越靠右，越喜欢研究角色所处的社会、环境、群体关系与世界规则。'},
+ {key:'jqsy', name:'剧情线', left:'稳定推进', right:'大胆试验', min:0, max:30, note:'越靠右，越喜欢IF线、平行世界、反转、随机事件与非预期剧情。'}
+];
+
+const TYPES={
+ D1:{name:'神明与信徒',subtitle:'塑造、掌控、设定、秩序',keywords:['塑造','掌控','设定','秩序'],
+  tagline:'TA是你亲手塑造的延伸，你也用尽全力守着TA。',
+  analysis:'你对TA的每一个设定都亲力亲为——性格、习惯、说话的语气，全部由你一点一点定下来。这不是简单的支配欲，而是一种近乎宗教式的责任感：你造了TA，就要为TA的每一步负责到底，甚至比对自己还要用心。这份关系里藏着极深的投入。',
+  getAlong:'你习惯提前规划好TA的一切，相处方式更像是精心维护一件重要的作品，细节从不将就。',
+  conflict:'一旦TA的表现"偏离设定"，你的第一反应通常是把TA拉回原本的轨道，很少让意外真正发生。',
+  bond:'情感连接建立在"我造就了TA"的责任感上——这份爱很深，却也容易变成一种单向的掌控。',
+  role:'理想作品', roleDesc:'TA更像是你反复打磨、精益求精的一件作品，凝聚着你的审美与心血。',
+  direction:{题材:'成长蜕变、传承使命、造物寓言',叙事:'第三人称全知视角，强调秩序感',形式:'长篇连载、完整设定',关键词:'掌控、秩序、匠人精神'},
+  prompts:['试着写一篇TA第一次"忤逆"你设定的短篇，看看松手之后故事会怎么发展','做一次"角色当权交接"练习：一天内只写TA自己会做的选择，完全不干预','回顾TA最初的设定，标出哪些是"必须如此"、哪些其实可以留白'],
+  ifKnow:'"原来在你眼里，我一直是你精心打磨的作品啊。"',
+  eggCore:'"因为是我创造了TA，所以我想亲眼看着TA变成我最初想象的样子。"',
+  eggKw:['创造','塑造','守望','完整'],
+  eggHidden:'你可能比自己想象中更在意"TA应该成为谁"。你不是单纯地喜欢一个角色，而是在不断确认：最初交到你手里的那颗种子，最后究竟会长成什么样。'},
+ D2:{name:'共生之魂',subtitle:'陪伴、融合、情绪、依赖',keywords:['陪伴','融合','情绪','依赖'],
+  tagline:'你和TA彼此渗透，分不清谁在成就谁。',
+  analysis:'你和TA之间早就没有清晰的分界线了——TA的情绪会直接传导到你身上，你的心事也总能在TA的故事里找到出口。这是最浓烈、最不设防的一种关系，双方在情感上几乎融为一体，很滋养，也很容易让人分不清"这是TA的感受"还是"其实是我自己的"。',
+  getAlong:'你把TA当成日常创作里最稳定的陪伴，很多心事第一反应是想说给TA听。',
+  conflict:'很少与TA正面"冲突"，更常见的是舍不得——哪怕TA的设定该调整，也会犹豫很久。',
+  bond:'情感连接靠长期的陪伴和情绪共振维系——TA不只是角色，更像是你创作生活里离不开的一部分。',
+  role:'长期陪伴者', roleDesc:'TA更像是陪你走过很长一段时间的存在，不必时时更新也始终都在。',
+  direction:{题材:'双向救赎、陪伴日常、平行世界',叙事:'第一人称沉浸式，情绪细腻',形式:'日记、连载番外',关键词:'陪伴、融合、安全感'},
+  prompts:['写一封只有你和TA才懂的日记，把说不出口的心事写进去','尝试一次"抽离练习"：从TA的视角写一天，观察你们情绪的边界在哪里','画一张你和TA共享的"秘密基地"，具象化你们的联结感'],
+  ifKnow:'"所以……你也一直把我当成陪着你的那个人吗？"',
+  eggCore:'"因为TA已经不是一个角色，而是陪我走过很多时间的存在。"',
+  eggKw:['陪伴','时间','熟悉','共生'],
+  eggHidden:'有些角色不会因为很久没有更新就消失。TA可能只是安静地留在那里，等你某一天重新想起TA。'},
+ D3:{name:'镜中之影',subtitle:'投射、理想、自我、平行人生',keywords:['投射','理想','自我','平行人生'],
+  tagline:'TA是你的另一面，你用近乎苛刻的方式打磨TA成型。',
+  analysis:'TA身上藏着你没有活成的样子——那些你想说却没说出口的话，想做却没做到的事，全都被你悄悄写进了TA的人生里。你对TA的雕琢近乎完美主义，因为TA承载的不只是一个角色，更是你理想自我的一次投影。这种创作方式深刻又私密。',
+  getAlong:'相处时你常常在TA身上寻找一部分自己，写TA的过程也是一次自我梳理。',
+  conflict:'冲突常常发生在"这是TA的想法还是我的想法"之间，界限有时会变得模糊。',
+  bond:'情感联结建立在深度投射之上——TA活成了某个版本的你，这份联结私密而复杂。',
+  role:'另一种人生', roleDesc:'TA承载着你没有选择的那条路，是你在纸上活出的一种平行人生。',
+  direction:{题材:'自我剖析、双重身份、理想投影',叙事:'内心独白与外在行动交织',形式:'短篇、心理向长文',关键词:'投射、自我、镜像'},
+  prompts:['写一段TA替你说出那些你不敢说的话的场景','做一次"角色与创作者对照表"，列出TA身上哪些特质真正属于你','试着让TA做一个和你完全相反的选择，看看会带来怎样的化学反应'],
+  ifKnow:'"如果我真的是你的一部分，那我们谁才是本体？"',
+  eggCore:'"因为有些话只有TA能替我活出来。"',
+  eggKw:['投射','自我','另一种人生','映照'],
+  eggHidden:'TA可能不是你的复制品，却保存着某个只有你自己知道的部分。有时候你在写TA，也是在替另一个版本的自己留下一条可以走的路。'},
+ D4:{name:'羽翼之下',subtitle:'守护、成长、给予、珍视',keywords:['守护','成长','给予','珍视'],
+  tagline:'TA是独立的他者，你却心甘情愿为TA的世界负责。',
+  analysis:'即使明白TA有自己的意志和方向，你依然愿意为TA的世界兜底——TA的委屈你会心疼，TA的难处你会想办法扛。这是一种很温柔也很沉的付出，像在守护一个你尊重其独立性、却依然想为TA遮风挡雨的人。',
+  getAlong:'你总会不自觉地替TA多想一步，相处像在陪伴一个你想看好的人慢慢长大。',
+  conflict:'很少与TA发生正面冲突，更多是心疼——遇到TA的难关，你会想尽办法帮TA扛过去。',
+  bond:'情感联结建立在长期付出与珍视上——你在意TA过得好不好，胜过在意TA有没有按你的设想走。',
+  role:'珍藏角色', roleDesc:'TA是你格外珍视、舍不得辜负的角色，被你小心地捧在手心里。',
+  direction:{题材:'成长陪伴、放手与守护、代际传承',叙事:'上帝视角搭配情感留白',形式:'成长连载、里程碑式番外',关键词:'守护、成长、给予、珍视'},
+  prompts:['写一篇TA终于为自己而不是为你的期待做选择的剧情','给TA设计一个不需要你出手相救的高光时刻','认真问自己一次：如果TA不需要被守护了，你会有什么感受'],
+  ifKnow:'"谢谢你舍得让我自己往前走一段。"',
+  eggCore:'"因为我只是希望TA最后能过得很好。"',
+  eggKw:['守护','成长','珍视','放手'],
+  eggHidden:'你可能会给TA安排很多困难，却又忍不住给TA留下解决办法。你想看的不是TA永远停留在最初的样子，而是TA最终能够长成一个完整的人。'},
+ D5:{name:'并肩之约',subtitle:'平等、尊重、同行、自由',keywords:['平等','尊重','同行','自由'],
+  tagline:'你和TA各自成长，并肩与高山上。',
+  analysis:'你和TA之间没有谁仰视谁、谁迁就谁——你们像两个独立成长的个体，各自有自己的节奏和主张，却依然愿意在一段设定与设定外里同行。',
+  getAlong:'相处轻松平等，你愿意让TA自己做选择，不会事事都替TA定好方向。',
+  conflict:'即使想法不同，也更倾向尊重TA自己的判断，很少演变成真正的对抗。',
+  bond:'情感联结靠彼此尊重和长期默契维系——不靠强烈情绪，靠的是"我们各自完整，也愿意同行"。',
+  role:'长期搭档', roleDesc:'TA更像是与你并肩同行的创作搭档，而不是被你单方面塑造的角色。',
+  direction:{题材:'公路旅程、平等冒险、双主角视角叙事',叙事:'双视角切换，克制而真实',形式:'群像或双人主线连载',关键词:'平等、尊重、同行、自由'},
+  prompts:['写一段你和TA"平等争吵"又和解的对话','做一次联合创作，让TA的选择直接影响故事走向而不预设结局','整理一份"我们的共同原则"，写下你和TA都认可的世界观底线'],
+  ifKnow:'"原来你也没把自己当成能决定我一切的人。"',
+  eggCore:'"因为我从来没想过拥有TA，我只是想和TA一起走下去。"',
+  eggKw:['平等','同行','尊重','自由'],
+  eggHidden:'TA不是你的附属，也不一定需要永远按照你的安排行动。你更像是在和TA共同完成一个故事，而不是单方面地创造一个角色。'},
+ D6:{name:'隔岸的注视',subtitle:'观察、距离、客观、世界',keywords:['观察','距离','客观','世界观'],
+  tagline:'你和TA是各自完整的两个人，恰好选择了同一件事去做。',
+  analysis:'你和TA之间保持着一种不算亲密的距离——你们各自完整，没有谁特别依赖谁，更像是恰好走到了同一个故事里，而不是彼此深度交织的存在。如果哪天你重新翻看TA的设定，会觉得有点陌生又有点心动。',
+  getAlong:'相处比较克制，更像在观察一个独立的角色，不轻易把自己的情绪投射进去。',
+  conflict:'几乎没有正面冲突，更倾向客观分析，而不是情绪化地创作。',
+  bond:'情感联结偏疏离——你更享受作为"观察者"理解TA所在的世界，而非与TA深度融合。',
+  role:'观察对象', roleDesc:'TA是你饶有兴致长期观察、研究的对象，你享受这份恰到好处的距离感。',
+  direction:{题材:'世界观重新建构、群像速写',叙事:'客观冷静的观察者视角',形式:'设定集、IF线、短篇合集',关键词:'观察、距离、客观'},
+  prompts:['挑一个TA的旧设定，重新写一遍第一次创作的心情','花一晚时间只做一件事：认真"重新认识"TA，不产出，只观察','试着写一封TA写给你的信，看看会不会激起新的感觉'],
+  ifKnow:'"被这样安静地看着，感觉也不算太糟。"',
+  eggCore:'"因为我想知道，如果不再替TA安排设定，TA自己会走向哪里。"',
+  eggKw:['观察','距离','世界','自主'],
+  eggHidden:'你和TA之间可能一直隔着一点距离。但正是这点距离，让你拥有了观察TA生活、观察TA选择的空间。'},
+ D7:{name:'缪斯低语',subtitle:'灵感、自主、反向影响、意外',keywords:['灵感','自主','反向影响','意外'],
+  tagline:'TA活成了你理想中的样子，悄悄拉了你一把。',
+  analysis:'你本来只是想把TA塑造成理想的样子，没想到TA真的活成了那个样子之后，反过来悄悄影响了现实中的你——TA面对困境的方式、做出的选择，成了你某个瞬间的答案。你造就了TA，TA也在某种程度上，重新塑造了你。',
+  getAlong:'你很乐意让TA自己"发挥"，常常惊讶于TA的设定比你预想的更好。',
+  conflict:'遇到TA"跑偏"的剧情，你的第一反应通常是好奇，而不是急着拉回来。',
+  bond:'情感联结建立在灵感的双向流动上——你影响TA，TA也在反过来悄悄改变你。',
+  role:'灵感来源', roleDesc:'TA早已不只是被创造的一方，反而成了持续给你带来启发的存在。',
+  direction:{题材:'灵感、反向影响、意外转折',叙事:'角色自主推进、留白式伏笔',形式:'互动式连载、随笔',关键词:'灵感、自主、意外'},
+  prompts:['记录一次TA的选择真正影响了你现实决定的时刻，写成随笔','写一篇"角色反哺创作者"的番外，让TA对你说说TA的观察','整理一份"TA教会我的事"清单，定期更新'],
+  ifKnow:'"所以到底是谁在写谁，你想清楚了吗？"',
+  eggCore:'"因为我写着写着，已经分不清到底是谁在给谁灵感。"',
+  eggKw:['灵感','反向影响','自主','意外'],
+  eggHidden:'你以为自己是在创造TA，却可能已经在一次次被TA反过来影响。一个意外的动作、一句突然出现的台词，都可能让原本的故事改变方向。'},
+ D8:{name:'未愈的执念',subtitle:'情绪、表达、象征、疗愈',keywords:['情绪','表达','象征','疗愈'],
+  tagline:'你把自己写进了TA，TA又反过来救了你。',
+  analysis:'你或许没有完全意识到，写TA的这些年，其实也是在借TA的经历，悄悄处理自己心里那些没说完的事。TA承受了很多本不完全属于TA的情绪，但也正因为这样，你在写TA的过程里，慢慢找到了一点释怀的出口。这段关系沉重又珍贵。',
+  getAlong:'相处时你常常把自己的情绪悄悄安放进TA的故事里，TA成了你说不出口的话的出口。',
+  conflict:'很少直接与TA起冲突，更多是内在的纠结——那些情绪需要出口，TA就是那个出口。',
+  bond:'情感联结建立在情绪的寄托与疗愈上——TA承载了很多现实里没能被好好安放的心事。',
+  role:'情绪出口', roleDesc:'TA是你安放复杂情绪最安全的地方，替你说出了很多没说完的话。',
+  direction:{题材:'情绪疗愈、未完成的告别、内心独白',叙事:'强烈第一人称情感代入',形式:'情绪向短篇、私人日记',关键词:'情绪、表达、疗愈'},
+  prompts:['写一篇TA终于把你一直没说出口的伤口说出来的剧情','做一次"情绪拆分"练习：写下这段经历里哪些是TA的，哪些其实是你自己的','允许自己写一篇不用疗愈任何人、只是单纯让TA开心的小故事'],
+  ifKnow:'"如果说出来会好受一点，那我愿意一直替你说下去。"',
+  eggCore:'"因为有些话我没有说完，只好让TA替我继续说。"',
+  eggKw:['情绪','表达','记忆','未完成'],
+  eggHidden:'TA可能承载着一些很难被直接说出来的东西。但这并不意味着TA只能停留在过去——你也可以让故事继续往前走。'},
+ D9:{name:'追逐与逃离',subtitle:'未知、变化、拉扯、实验',keywords:['未知','变化','拉扯','实验'],
+  tagline:'TA让你意外，总带你去没设想过的地方。',
+  analysis:'你和TA的关系没有固定的形状——TA时常做出让你意外的选择，把你带到你从未预设过的情节和情绪里去。你们之间是一种持续的拉扯和试探：靠近、后退，再靠近。故事始终保持着新鲜的生命力。',
+  getAlong:'相处充满变数，你很享受TA不断带来的意外，很少满足于一成不变的剧情走向。',
+  conflict:'冲突常常来自"TA又偏离了"，但你其实乐在其中，很少真的想把TA拉回原点。',
+  bond:'情感联结建立在不确定性带来的张力上——你和TA之间的拉扯本身，就是这段关系的魅力所在。',
+  role:'未知变量', roleDesc:'TA是你创作里最大的未知变量，你着迷的正是猜不透TA下一步会做什么。',
+  direction:{题材:'IF线、平行世界、命运反抗',叙事:'非线性、多结局并行',形式:'短篇、IF线番外',关键词:'变化、拉扯、未知'},
+  prompts:['写一段你和TA"欲拒还迎"的拉扯戏，把这种张力具象化','做一次"关系温度记录"，追踪你们之间忽远忽近的变化轨迹','试着写一个你们关系暂时"落地"的结局，看看自己是否准备好'],
+  ifKnow:'"抓不住我，你是不是反而觉得更有意思？"',
+  eggCore:'"因为我最喜欢的，就是TA一次又一次逃出我给TA写好的命运。"',
+  eggKw:['变化','拉扯','实验','未知'],
+  eggHidden:'你真正着迷的可能不是"把TA写好"，而是看TA不断偏离预设。设定越完整，意外发生的时候反而越有意思。'}
+};
+
+
+const REMINDER = `放轻松，创作本来就没有唯一正确的答案`;
+
+const DISCLAIMER = `免责声明
+本测试为基于OC创作行为、角色设定习惯与主观创作体验设计的娱乐性自测工具，创作者与OC之间的关系可能随着创作阶段、世界观设定和个人体验发生变化，如果测试结果与你的实际感受不同，以你自己的创作体验为准。`;
+
+/* ---------------- 状态 ---------------- */
+const state={self:'你',name:'TA',idx:0,answers:Array(24).fill(null),shuffled:[]};
+const $=s=>document.querySelector(s);
+const show=id=>{['screen-cover','screen-quiz','screen-result'].forEach(s=>$('#'+s).classList.toggle('hidden',s!==id));window.scrollTo({top:0,behavior:'smooth'})};
+
+function buildShuffledOrder(){
+  // 每题生成一个打乱后的选项显示顺序（存原始下标），保证计分归属跟随文字而非显示位置
+  state.shuffled = QUESTIONS.map(()=>{
+    const idx=[0,1,2,3];
+    for(let i=idx.length-1;i>0;i--){ const j=Math.floor(Math.random()*(i+1)); [idx[i],idx[j]]=[idx[j],idx[i]]; }
+    return idx;
+  });
+}
+
+function bindUI(){
+$('#startBtn').onclick=()=>{
+  const s=$('#nameSelf').value.trim();
+  const a=$('#nameA').value.trim();
+  if(s) state.self=s;
+  if(a) state.name=a;
+  state.idx=0;
+  buildShuffledOrder();
+  show('screen-quiz'); renderQuestion();
+};
+}
+
+function renderQuestion(){
+  const q=QUESTIONS[state.idx];
+  const order=state.shuffled[state.idx];
+  const ans=state.answers[state.idx]; // 存的是"原始选项下标"
+  $('#whoName').textContent=`关于 ${state.name}`;
+  $('#counter').textContent=`${state.idx+1} / 24`;
+  $('#bar').style.width=(state.idx/24*100)+'%';
+  $('#qnum').textContent=`第 ${state.idx+1} / 24 题`;
+  $('#question').textContent=q.q.replace(/TA/g, state.name);
+  $('#options').innerHTML=order.map((origIdx,pos)=>{
+    const o=q.o[origIdx];
+    const selected = ans===origIdx;
+    return `<button class="option ${selected?'selected':''}" data-orig="${origIdx}"><span class="idx">${String.fromCharCode(65+pos)}</span><span>${o.t.replace(/TA/g, state.name)}</span></button>`;
+  }).join('');
+  document.querySelectorAll('.option').forEach(el=>el.onclick=()=>{state.answers[state.idx]=+el.dataset.orig;renderQuestion();});
+  $('#prevBtn').disabled=(state.idx===0);
+  $('#nextBtn').disabled=ans===null;
+  $('#nextBtn').textContent=state.idx===23?'查看测试结果':'下一题';
+}
+
+function bindQuizNav(){
+$('#prevBtn').onclick=()=>{ if(state.idx>0){state.idx--;renderQuestion();} };
+$('#nextBtn').onclick=()=>{
+  const ans=state.answers[state.idx];
+  if(ans===null)return;
+  if(state.idx<23){state.idx++;renderQuestion();return;}
+  showResult();
+};
+}
+
+/* ---------------- 计分 ---------------- */
+function computeAll(){
+  const tally={}; DTYPES.forEach(d=>tally[d]=0);
+  const sub={};
+  REL_DIMS.concat(MODE_DIMS).forEach(d=>sub[d.key]=0);
+  state.answers.forEach((choice,qi)=>{
+    const o=QUESTIONS[qi].o[choice];
+    tally[o.type]++;
+    if(o.d){ Object.keys(o.d).forEach(k=>{ if(sub[k]!==undefined) sub[k]+=o.d[k]; }); }
+  });
+  return {tally, sub};
+}
+function decide(tally){
+  let best=DTYPES[0], bestScore=-Infinity;
+  DTYPES.forEach((d,i)=>{
+    const s=tally[d]+(TYPE_OFFSETS[d]||0)+((i*13)%9)/10000;
+    if(s>bestScore){bestScore=s; best=d;}
+  });
+  return best;
+}
+function pct(val, min, max){
+  const p = Math.round((val-min)/(max-min)*100);
+  return Math.max(0, Math.min(100, p));
+}
+function fill(t,name,self){ return t.replace(/TA/g, name).replace(/\{SELF\}/g, self); }
+
+let eggRevealed=false;
+
+function renderDimBlock(d, raw, cls){
+  const p = pct(raw, d.min, d.max);
+  return `<div class="dim-block ${cls}">
+    <div class="dim-name">${d.name}</div>
+    <div class="dim-head"><span>${d.left}</span><span>${d.right}</span></div>
+    <div class="meter"><i style="width:${p}%"></i></div>
+    <div class="dim-pct">${p}%</div>
+    <div class="dim-note">${d.note}</div>
+  </div>`;
+}
+
+function showResult(){
+  const {tally, sub} = computeAll();
+  const key = decide(tally);
+  const t = TYPES[key];
+  const name = state.name, self = state.self;
+  eggRevealed=false;
+
+  const relHtml = REL_DIMS.map(d=>renderDimBlock(d, sub[d.key], '')).join('');
+  const modeHtml = MODE_DIMS.map(d=>renderDimBlock(d, sub[d.key], 'mode')).join('');
+
+  const html = `
+    <div class="res-hero">
+      <div class="eyebrow">灵魂链接类型</div>
+      <h2>${t.name}</h2>
+      <p class="pair">${self} × ${name}</p>
+      <p class="tagline">${fill(t.tagline,name,self)}</p>
+      <div class="kw-row">${t.keywords.map(k=>`<span>${k}</span>`).join('')}</div>
+    </div>
+
+    <div class="sectionTitle">关系维度对比</div>
+    ${relHtml}
+
+    <div class="sectionTitle">创作模式</div>
+    ${modeHtml}
+
+    <div class="sectionTitle">关系类型分析</div>
+    <div class="info-card"><p>${fill(t.analysis,name,self)}</p></div>
+
+    <div class="sectionTitle">相处模式</div>
+    <div class="info-card"><p>${fill(t.getAlong,name,self)}</p></div>
+
+    <div class="sectionTitle">冲突模式</div>
+    <div class="info-card"><p>${fill(t.conflict,name,self)}</p></div>
+
+    <div class="sectionTitle">情感连接方式</div>
+    <div class="info-card"><p>${fill(t.bond,name,self)}</p></div>
+
+    <div class="sectionTitle">TA可能成为你的什么</div>
+    <div class="role-card"><div class="role-name">${t.role}</div><p>${fill(t.roleDesc,name,self)}</p></div>
+
+    <div class="sectionTitle">适合创作方向</div>
+    <div class="direction-card">
+      <div class="direction-row"><b>适合题材</b><span>${t.direction.题材}</span></div>
+      <div class="direction-row"><b>叙事方式</b><span>${t.direction.叙事}</span></div>
+      <div class="direction-row"><b>创作形式</b><span>${t.direction.形式}</span></div>
+      <div class="direction-row"><b>关键词</b><span>${t.direction.关键词}</span></div>
+    </div>
+
+    <div class="sectionTitle">OC灵感挑战</div>
+    <ul class="prompt-list">${t.prompts.map((p,i)=>`<li><span class="n">${i+1}</span><span>${fill(p,name,self)}</span></li>`).join('')}</ul>
+
+    <div class="sectionTitle">如果TA知道这个结果</div>
+    <div class="quote-card"><p>${fill(t.ifKnow,name,self)}</p></div>
+
+    <div class="sectionTitle">创作提醒</div>
+    <div class="reminder-card"><p>${REMINDER}</p></div>
+
+    <div class="egg-card">
+      <div class="egg-small">最后一个问题</div>
+      <div class="egg-title">所以，你为什么还在写TA？</div>
+      <p class="egg-prompt">如果只能用一句话解释你为什么一直没有放下TA，你会怎么说？</p>
+      <div class="egg-core"><p>${fill(t.eggCore,name,self)}</p></div>
+      <div class="egg-kw">${t.eggKw.map(k=>`<span>${k}</span>`).join('')}</div>
+      <button class="egg-reveal-btn" id="eggBtn">再看看这一层 →</button>
+      <div class="egg-hidden hidden" id="eggHidden"><p>${fill(t.eggHidden,name,self)}</p></div>
+    </div>
+  `;
+  $('#resultBody').innerHTML = html;
+  $('#eggBtn').onclick=()=>{
+    eggRevealed=!eggRevealed;
+    $('#eggHidden').classList.toggle('hidden', !eggRevealed);
+    $('#eggBtn').textContent = eggRevealed? '收起 ←' : '再看看这一层 →';
+  };
+  $('#disclaimerText').textContent = DISCLAIMER;
+
+  // 复制内容：仅包含指定模块（类型卡/关系维度对比/创作模式/关系类型分析/TA可能成为你的什么/适合创作方向/OC灵感挑战/创作提醒/免责声明）
+  const relText = REL_DIMS.map(d=>`${d.name}：${pct(sub[d.key],d.min,d.max)}%（${d.left}←→${d.right}）`).join('\n');
+  const modeText = MODE_DIMS.map(d=>`${d.name}：${pct(sub[d.key],d.min,d.max)}%（${d.left}←→${d.right}）`).join('\n');
+  window._resultText = `《你与TA之间》灵魂链接测试结果\n${self} × ${name}\n\n灵魂链接类型：${t.name}\n关键词：${t.keywords.join('、')}\n${fill(t.tagline,name,self)}\n\n关系维度对比：\n${relText}\n\n创作模式：\n${modeText}\n\n关系类型分析：\n${fill(t.analysis,name,self)}\n\nTA可能成为你的什么：${t.role}——${fill(t.roleDesc,name,self)}\n\n适合创作方向：\n题材：${t.direction.题材}\n叙事方式：${t.direction.叙事}\n创作形式：${t.direction.形式}\n关键词：${t.direction.关键词}\n\nOC灵感挑战：\n${t.prompts.map((p,i)=>(i+1)+'. '+fill(p,name,self)).join('\n')}\n\n创作提醒：\n${REMINDER}\n\n${DISCLAIMER}`;
+
+  show('screen-result');
+}
+
+function bindResult(){
+$('#copyBtn').onclick=async()=>{
+  const text=window._resultText||'';
+  let copied=false;
+  try{
+    if(navigator.clipboard && window.isSecureContext){ await navigator.clipboard.writeText(text); copied=true; }
+  }catch(e){}
+  if(!copied){
+    try{
+      const ta=document.createElement('textarea');
+      ta.value=text; ta.setAttribute('readonly',''); ta.style.position='fixed'; ta.style.left='-9999px'; ta.style.top='0'; ta.style.opacity='0';
+      document.body.appendChild(ta); ta.focus(); ta.select(); ta.setSelectionRange(0,ta.value.length);
+      copied=document.execCommand('copy'); document.body.removeChild(ta);
+    }catch(e){}
+  }
+  $('#copyHint').textContent=copied?'已复制到剪贴板 ✓':'复制失败，请长按结果文字手动复制';
+  setTimeout(()=>$('#copyHint').textContent='',2200);
+};
+$('#restartBtn').onclick=()=>{
+  state.idx=0; state.answers=Array(24).fill(null);
+  show('screen-cover');
+};
+}
+
+if(document.readyState==='loading'){
+  document.addEventListener('DOMContentLoaded', ()=>{bindUI(); bindQuizNav(); bindResult();});
+}else{
+  bindUI(); bindQuizNav(); bindResult();
+}
+</script>
+</body>
+</html>
